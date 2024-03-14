@@ -26,7 +26,7 @@ public class Cliente {
     }
 
     private static void iniciarComponentes(JFrame frame) {
-        JLabel codeLabel = new JLabel("Código:");
+        JLabel codeLabel = new JLabel("Codigo:");
         codeField = new JTextField(20);
         submitButton = new JButton("Ingresar");
         statusLabel = new JLabel("  ");
@@ -62,9 +62,9 @@ public class Cliente {
             int nro = Integer.parseInt(codeField.getText());
 
             try {
-                LectorRemoto loginRemoto =
+                LectorRemoto lectorRemoto =
                         (LectorRemoto) Naming.lookup("//localhost/LectorRemoto");
-                String res = loginRemoto.consultar(nro);
+                String res = lectorRemoto.consultar(nro);
                 if (res!=null) {
                     statusLabel.setText(res); //res tienen que se el producto y precio relacionado al codigo
                 } else {
