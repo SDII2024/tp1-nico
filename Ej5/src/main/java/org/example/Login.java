@@ -8,7 +8,12 @@ import java.util.logging.Logger;
 public class Login extends UnicastRemoteObject implements LoginRemoto{
     String url = "jdbc:sqlite:login.db";
     static Logger logger = Logger.getLogger(org.example.Login.class.getName());
-    Login() throws RemoteException { }
+    Login() throws RemoteException {
+        crearTablaBD();
+        insertarUsuario("usuario1", "contrasena1");
+        insertarUsuario("usuario2", "contrasena2");
+        insertarUsuario("usuario3", "contrasena3");
+    }
 
     /**
      * "usuario1", "contrasena1"
@@ -33,18 +38,6 @@ public class Login extends UnicastRemoteObject implements LoginRemoto{
 
         return false;
     }
-
-/*
-     public static void main(String[] args) throws RemoteException {
-         Login login = new Login();
-         login.crearTablaBD();
-         login.insertarUsuario("usuario1", "contrasena1");
-         login.insertarUsuario("usuario2", "contrasena2");
-         login.insertarUsuario("usuario3", "contrasena3");
-         login.validar("usuario1", "contrasena1");
-     }
-
-
 
      public void crearTablaBD(){
          String createTableSQL = "CREATE TABLE IF NOT EXISTS usuarios ("
@@ -80,6 +73,6 @@ public class Login extends UnicastRemoteObject implements LoginRemoto{
              logger.info(e.getMessage());
          }
      }
-*/
+
 
 }

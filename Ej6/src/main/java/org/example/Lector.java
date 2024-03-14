@@ -9,7 +9,12 @@ public class Lector extends UnicastRemoteObject implements LectorRemoto {
 
     String url = "jdbc:sqlite:codigo.db";
     static Logger logger = Logger.getLogger(org.example.Lector.class.getName());
-    Lector() throws RemoteException { }
+    Lector() throws RemoteException {
+        crearTablaBD();
+        insertarProducto(111111111,"Carne",3000);
+        insertarProducto(123456789,"Agua",1500);
+        insertarProducto(987654321,"Pan",1000);
+    }
 
     @Override
     public String consultar (int codigo) {
@@ -24,15 +29,6 @@ public class Lector extends UnicastRemoteObject implements LectorRemoto {
             logger.info(e.getMessage());
         }
         return null;
-    }
-
-    /*
-    public static void main(String[] args) throws RemoteException {
-        Lector login = new Lector();
-        login.crearTablaBD();
-        login.insertarProducto(111111111,"Carne",3000);
-        login.insertarProducto(123456789,"Agua",1500);
-        login.insertarProducto(987654321,"Pan",1000);
     }
 
 
@@ -70,7 +66,7 @@ public class Lector extends UnicastRemoteObject implements LectorRemoto {
             logger.info(e.getMessage());
         }
     }
-*/
+
 }
 
 
