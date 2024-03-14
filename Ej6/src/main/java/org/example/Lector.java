@@ -14,11 +14,10 @@ public class Lector extends UnicastRemoteObject implements LectorRemoto {
     @Override
     public String consultar (int codigo) {
         try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement("SELECT prod,precio FROM productos WHERE nro = ?")) {
+            PreparedStatement pstmt = conn.prepareStatement("SELECT prod,precio FROM productos WHERE nro = ?")) {
             pstmt.setInt(1, codigo);
             ResultSet rs = pstmt.executeQuery();
-
-            if (!rs.wasNull()) {
+            if (rs.next()) {
                 return "El producto es: "+ rs.getString("prod") +" y su precio es: "+ rs.getInt("precio");
             }
         } catch (SQLException e) {
@@ -27,6 +26,7 @@ public class Lector extends UnicastRemoteObject implements LectorRemoto {
         return null;
     }
 
+    /*
     public static void main(String[] args) throws RemoteException {
         Lector login = new Lector();
         login.crearTablaBD();
@@ -70,7 +70,7 @@ public class Lector extends UnicastRemoteObject implements LectorRemoto {
             logger.info(e.getMessage());
         }
     }
-
+*/
 }
 
 

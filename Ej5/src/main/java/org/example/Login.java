@@ -19,7 +19,7 @@ public class Login extends UnicastRemoteObject implements LoginRemoto{
     @Override
     public boolean validar (String usuario,String password) throws RemoteException {
         try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM usuarios WHERE nombre = ? AND contrasena = ?")) {
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM usuarios WHERE nombre = ? AND contrasena = ?")) {
             pstmt.setString(1, usuario);
             pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
